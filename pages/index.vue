@@ -10,7 +10,7 @@
           </div>
           <v-container>
             <LoginForm :id.sync="user.id" :password.sync="user.password" />
-            <v-btn color="primary" class="login-btn mt-3" block>Login</v-btn>
+            <v-btn color="white" outlined class="login-btn mt-3" block>Login</v-btn>
 
             <p class="forget-password">パスワードを忘れた場合</p>
           </v-container>
