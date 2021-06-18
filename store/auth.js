@@ -16,3 +16,11 @@ export const mutations = {
     state.user = user
   },
 }
+
+export const actions = {
+  loginCheck({ commit }, { id, password }) {
+    if (id !== 'admin') return false
+    if (password !== '1111') return false
+    return true
+  },
+}

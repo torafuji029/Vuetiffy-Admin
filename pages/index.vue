@@ -4,31 +4,57 @@
     <v-container fill-height class="content">
       <v-row align="center" justify="center">
         <v-col cols="12" sm="7" md="5" lg="4" xl="2" class="ma-0">
+          <!-- ロゴ & タイトル -->
           <div class="logo-box">
             <img class="logo" src="/v_white.png" />
             <p class="title">Vuetify Admin</p>
           </div>
+
+          <!-- サインインコンテンツ -->
           <v-container>
             <LoginForm :id.sync="user.id" :password.sync="user.password" />
-            <v-btn color="white" outlined class="login-btn mt-3" block>Login</v-btn>
-
+            <v-btn color="white" outlined class="login-btn mt-2" block　@click="login(user.id,user.password)">
+              Login
+            </v-btn>
+            <!-- TODO パスワード忘れた場合の画面作成 -->
             <p class="forget-password">パスワードを忘れた場合</p>
           </v-container>
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- エラーダイアログ -->
+    <v-snackbar v-model="error.flag" color="error" top>
+      <v-icon>mdi-alert</v-icon>
+      <span>{{ error.content }}</span>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
+  layout: 'noAuthc',
   data() {
     return {
+      // ユーザー情報
       user: {
         id: 'admin',
         password: '1111',
       },
+      // エラー内容
+      error: {
+        flag: false,
+        content: 'IDまたはパスワードに誤りがあります',
+      },
     }
+  },
+  methods: {
+    ...mapActions('auth', ['loginCheck']),
+    async login(id, password) {
+      if (await this.loginCheck({ id, password })) this.$router.push('apps/email')
+      else this.error.flag = true
+    },
   },
 }
 </script>
@@ -37,8 +63,7 @@ export default {
 .login-box {
   height: 100%;
   width: 100%;
-  background: url('../assets/background1.jpg');
-  background-size: cover;
+
   .content {
     margin-top: -25px;
   }
@@ -74,6 +99,12 @@ export default {
     .title {
       color: white;
     }
+  }
+}
+
+.error {
+  &-content {
+    color: $error;
   }
 }
 

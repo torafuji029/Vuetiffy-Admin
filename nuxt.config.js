@@ -64,6 +64,9 @@ export default {
           accent: '#CBF637',
           secondary: '#16B3AA',
           third: '#3AC76B',
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: '#C62828',
         },
         dark: {
           primary: colors.blue.darken2,

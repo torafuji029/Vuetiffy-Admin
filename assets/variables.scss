@@ -2,3 +2,18 @@ $primary: #1183b7;
 $accent: #cbf637;
 $secondary: #16b3aa;
 $third: #3ac76b;
+$error: #c62828;
+
+body {
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px $primary;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px $secondary;
+}
