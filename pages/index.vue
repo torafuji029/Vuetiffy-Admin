@@ -52,7 +52,7 @@ export default {
   methods: {
     ...mapActions('auth', ['loginCheck']),
     async login(id, password) {
-      if (await this.loginCheck({ id, password })) this.$router.push('apps/email')
+      if (await this.loginCheck({ id, password })) this.$router.push('apps/email/inbox')
       else this.error.flag = true
     },
   },
